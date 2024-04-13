@@ -1,4 +1,7 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /*
  * =====================================================================
@@ -16,16 +19,32 @@ public class HangmanGame {
         // Read the secret word and turn it into an array of characters
         System.out.println("Enter the secret word:");
         char[] word = scanner.nextLine().toCharArray();
+        
+        Game game = new Game(word);
 
-        // TODO: Initialize an array to track guessed letters, a counter for the
-        // number of wrong guesses, etc.
+        Player p = new Player();
 
-        // TODO: While the game is not over, do the following:
-        // 1. Reveal the letters correctly guessed so far.
-        // 2. Read the next letter from the standard input.
-        // 3. Update according to whether the letter is in the secret word or not.
-        // 4. If the player has guessed the word, print "Congratulations! ...".
-        // 5. If the player made too many wrong guesses, print "Game Over! ...".
+        while (true){
+            System.out.println("Current progress:");
+            game.printGuessed();
+            System.out.println("You have " + p.getCounter() + " wrong guesses left.");
+            if (!p.isOver()){
+                p.setC(scanner.next().charAt(0));
+                if (!game.checkChar(p.getC())){
+                    p.decrement();
+                }
+                if(game.win()){
+                    String str = Stream.of(word)
+                            .map(String::new)
+                            .collect(Collectors.joining());
+                    System.out.println("Congratulations! You've guessed the word: " + str);
+                    break;
+                }
+            } else {
+                System.out.println("Game Over!");
+                break;
+            }
+        }
 
         scanner.close();
     }
