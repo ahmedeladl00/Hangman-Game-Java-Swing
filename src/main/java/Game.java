@@ -19,14 +19,15 @@ public class Game {
     }
 
     public boolean checkChar(char c){
+        boolean flag = false;
         for (int i = 0; i < this.word.length; i++){
             if (this.word[i] == c){
                 this.word[i] = 0;
                 this.guessed[i] = c;
-                return true;
+                flag = true;
             }
         }
-        return false;
+        return flag;
     }
 
     public boolean win(){
