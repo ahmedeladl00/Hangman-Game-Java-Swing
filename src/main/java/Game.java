@@ -1,4 +1,3 @@
-
 class Game {
     private final String secretWord;
     private final boolean[] guessed;
@@ -6,6 +5,10 @@ class Game {
     public Game(String secretWord) {
         this.secretWord = secretWord;
         this.guessed = new boolean[secretWord.length()];
+    }
+
+    public String getSecretWord() {
+        return secretWord;
     }
 
     public String displayProgress() {
