@@ -1,51 +1,31 @@
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-/*
- * =====================================================================
- * Write your implementation for the assignment at the "TODO" sections.
- * For more details, refer to README.md.
- * =====================================================================
- */
 
 public class HangmanGame {
     public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Enter the secret word:");
+            String secretWord = scanner.nextLine();
 
-        // Scanner to read the input
-        Scanner scanner = new Scanner(System.in);
+            Game game = new Game(secretWord);
+            Player player = new Player(6); // Setting max wrong guesses as 6
 
-        // Read the secret word and turn it into an array of characters
-        System.out.println("Enter the secret word:");
-        char[] word = scanner.nextLine().toCharArray();
-        
-        Game game = new Game(word);
+            while (!player.isOver() && !game.isWin()) {
+                System.out.println("Current progress: " + game.displayProgress());
+                System.out.println("You have " + player.getRemainingGuesses() + " wrong guesses left.");
 
-        Player p = new Player();
+                System.out.println("Enter your guess:");
+                char guess = scanner.next().charAt(0);
 
-        while (true){
-            System.out.println("Current progress:");
-            game.printGuessed();
-            System.out.println("You have " + p.getCounter() + " wrong guesses left.");
-            if (!p.isOver()){
-                p.setC(scanner.next().charAt(0));
-                if (!game.checkChar(p.getC())){
-                    p.decrement();
+                if (!game.checkGuess(guess)) {
+                    player.decrementGuesses();
                 }
-                if(game.win()){
-                    String str = Stream.of(word)
-                            .map(String::new)
-                            .collect(Collectors.joining());
-                    System.out.println("Congratulations! You've guessed the word: " + str);
-                    break;
-                }
+            }
+
+            if (game.isWin()) {
+                System.out.println("Congratulations! You've guessed the word: " + secretWord);
             } else {
-                System.out.println("Game Over!");
-                break;
+                System.out.println("Game Over! The correct word was: " + secretWord);
             }
         }
-
-        scanner.close();
     }
 }

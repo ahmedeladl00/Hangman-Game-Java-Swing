@@ -1,28 +1,19 @@
-public class Player {
-    private int counter;
-    private char c;
+class Player {
+    private int remainingGuesses;
 
-    public Player(){
-        this.counter = 6;
+    public Player(int maxWrongGuesses) {
+        this.remainingGuesses = maxWrongGuesses;
     }
 
-    public boolean isOver(){
-        return counter <= 0;
+    public void decrementGuesses() {
+        if (remainingGuesses > 0) remainingGuesses--;
     }
 
-    public int getCounter() {
-        return counter;
+    public int getRemainingGuesses() {
+        return remainingGuesses;
     }
 
-    public void decrement(){
-        this.counter--;
-    }
-
-    public void setC(char c){
-        this.c = c;
-    }
-
-    public char getC() {
-        return c;
+    public boolean isOver() {
+        return remainingGuesses <= 0;
     }
 }
