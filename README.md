@@ -1,52 +1,43 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/B_1-FqoW)
-# Assignment 1 - Hangman game
+# Hangman Game GUI
 
-Hangman is a guessing game for two players. The first player thinks of a word and the second player tries to guess it by consecutively suggesting letters with only a fixed amount of wrong guesses allowed.
+Hangman is a classic guessing game for two players. In this GUI-based version, one player enters a secret word, and the second player tries to guess it by suggesting letters, using a graphical interface instead of the console.
 
 ## Implementation
 
-Implement hangman as a console application. Note the following key points:
-* The first player types the secret word in the console.
-* Scan the word and store it letter by letter in an array.
-* The second player repeatedly guesses a letter by typing it in the console.
-* Scan each letter and compare it to the letters in the array.
-* Reveal the correct letters at their positions within the word.
-* The game is over if all letters are correctly guessed or after 6 failed guesses.
+Implementation of the Hangman game using Java Swing to create a graphical user interface (GUI). Here are the key features of the GUI version:
+* The game starts by prompting the first player to enter a secret word through a dialog box.
+* The word is stored internally, and the game screen shows blanks for each letter.
+* Players use the keyboard to input their guesses.
+* The GUI updates to reveal any correctly guessed letters in their respective positions.
+* The game tracks and displays the number of incorrect guesses left.
+* The game ends and displays a message when the player guesses the word correctly or exhausts the allowed wrong guesses.
 
-**Important:**
-The file `src/test/java/HangmanGameTest.java` contains automated tests that 
-GitHub runs automatically. Make sure of the following:
+## Example GUI Flow
 
-* If the player guesses the secret word, print the keyword "Congratulations!".
-* If the player fails to guess the word, print the keyword "Game over!".
+1. **Start Screen:**
+    - Prompt to enter the secret word in a dialog box.
+    - ![Screenshot of the Hangman GUI](images/start.png)
 
-This allows the automatic tests to detect whether the player has won or lost.
+2. **Gameplay Screen:**
+    - Display the progress with underscores representing each letter of the word.
+    - Allow the player to press keyboard keys to guess letters.
+    - Update the display to show correct guesses and remaining wrong guesses.
+    - ![Screenshot of the Hangman GUI](images/middle.png)
 
-## Example run
+3. **End of Game:**
+    - Show a message dialog stating "Congratulations! You've guessed the word: [word]" if the player wins.
+    - Show a message dialog stating "Game over! The correct word was: [word]" if the player loses.
+    - ![Screenshot of the Hangman GUI](images/end.png)
 
-```
-Enter the secret word:
-java
 
-Current progress: 
-_ _ _ _ 
-You have 6 wrong guesses left.
-Guess a letter: j
+## Running the Game
 
-Current progress: 
-j _ _ _ 
-You have 6 wrong guesses left.
-Guess a letter: w
-Wrong guess!
+To run the Hangman GUI game:
+1. Clone the repository: <br>
+``` git clone https://github.com/ahmedeladl00/Hangman-Game-Java-Swing.git```
+2. Compile the Java files from your terminal: <br>
+```javac HangmanGUI.java```
+3. Execute the game: <br>
+```java HangmanGUI```
 
-Current progress: 
-j _ _ _ 
-You have 5 wrong guesses left.
-Guess a letter: a
-
-Current progress: 
-j a _ a 
-You have 5 wrong guesses left.
-Guess a letter: v
-Congratulations! You've guessed the word: java
-```
+Feel free to download and try out the game, and consider contributing improvements or reporting issues!
